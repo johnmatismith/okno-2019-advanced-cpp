@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
-project(simple)
+project(okno_2019_advanced_cpp)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(simple main.cpp)
+add_executable(app main.cpp)

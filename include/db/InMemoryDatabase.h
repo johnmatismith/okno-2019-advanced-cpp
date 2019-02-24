@@ -16,8 +16,8 @@ class InMemoryDatabase {
 public:
     typedef std::map<std::string, std::string> Record;
 
-    // TODO (MR): might use iterators for constructing values_
-    explicit InMemoryDatabase(std::vector<Record> const& values_);
+    template <typename RecordIterator>
+    explicit InMemoryDatabase(RecordIterator begin, RecordIterator end);
 
     std::vector<Record>::const_iterator begin() const;
     std::vector<Record>::const_iterator end() const;
@@ -25,6 +25,11 @@ public:
 private:
     std::vector<Record> values_;
 };
+
+template <typename RecordIterator>
+InMemoryDatabase::InMemoryDatabase(RecordIterator begin, RecordIterator end)
+        : values_(begin, end) {
+}
 
 } // namespace db
 

@@ -30,7 +30,7 @@ InMemoryDatabase DatabaseFactory::createInMemoryDatabase(int const size) {
     RecordGenerator generator;
     std::generate_n(std::back_inserter(vector), size, [&generator] { return generator.generate(); });
 
-    return InMemoryDatabase(vector);
+    return InMemoryDatabase(vector.begin(), vector.end());
 }
 
 namespace {

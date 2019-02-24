@@ -6,10 +6,6 @@
 
 namespace db {
 
-InMemoryDatabase::InMemoryDatabase(std::vector<Record> const& values_)
-        : values_(values_) {
-}
-
 std::vector<InMemoryDatabase::Record>::const_iterator InMemoryDatabase::begin() const {
     return values_.begin();
 }

@@ -7,6 +7,8 @@ add_executable(app
         src/config/Configuration.cpp
         src/db/InMemoryDatabase.cpp
         src/db/DatabaseFactory.cpp
+        src/engine/ExpressionParser.cpp
+        src/engine/FieldEqualExpression.cpp
         main.cpp
 )
 

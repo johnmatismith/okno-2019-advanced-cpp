@@ -41,6 +41,7 @@ void UserInterface::presentRecordSet(RecordIterator begin, RecordIterator end, s
         out_ << '\n';
     }
 
+    out_<< '\n';
 }
 
 void UserInterface::printRecord(std::map<std::string, std::string> const& record) {

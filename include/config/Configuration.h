@@ -5,6 +5,8 @@
 #ifndef OKNO_2019_ADVANCED_CPP_CONFIGURATION_H
 #define OKNO_2019_ADVANCED_CPP_CONFIGURATION_H
 
+#include <string>
+
 
 namespace config {
 
@@ -14,6 +16,7 @@ public:
     static Configuration parse(int argc, char* argv[]);
 
     int getDatabaseSize() const;
+    std::string const& getExpression() const;
 
 private:
     explicit Configuration(int databaseSize_);

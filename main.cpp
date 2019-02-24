@@ -1,13 +1,12 @@
 
 #include "db/InMemoryDatabase.h"
 #include "db/DatabaseFactory.h"
+#include "ui/UserInterface.h"
 
 #include <iostream>
 #include <algorithm>
 
 int getDatabaseSize(int argc, char** argv);
-void print(db::InMemoryDatabase const &database);
-void printRecord(db::InMemoryDatabase::Record const &record);
 
 int main(int argc, char** argv) {
 
@@ -15,7 +14,9 @@ int main(int argc, char** argv) {
 
     auto const database = db::DatabaseFactory::createInMemoryDatabase(size);
 
-    print(database);
+    ui::UserInterface ui(std::cout);
+
+    ui.presentRecordSet(database.begin(), database.end(), "Initial database");
 
     return 0;
 }
@@ -26,14 +27,4 @@ int getDatabaseSize(int argc, char** argv) {
     }
     
     return std::atoi(argv[1]);
-}
-
-void print(db::InMemoryDatabase const &database) {
-    std::for_each(database.begin(), database.end(), printRecord);
-}
-
-void printRecord(db::InMemoryDatabase::Record const &record) {
-    std::cout << "Database record";
-    std::for_each(record.begin(), record.end(), [] (db::InMemoryDatabase::Record::value_type const& p) { std::cout << "\n\t" << p.first << " -> " << p.second; });
-    std::cout << "\n\n" << std::flush;
 }

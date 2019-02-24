@@ -4,10 +4,10 @@ project(okno_2019_advanced_cpp)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(app
-        main.cpp
+        src/config/Configuration.cpp
         src/db/InMemoryDatabase.cpp
         src/db/DatabaseFactory.cpp
+        main.cpp
 )
 
-target_include_directories(app PRIVATE
-        include)
+target_include_directories(app PRIVATE include)

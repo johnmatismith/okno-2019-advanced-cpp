@@ -5,26 +5,16 @@
 
 #include <iostream>
 #include <algorithm>
+#include <config/Configuration.h>
 
-int getDatabaseSize(int argc, char** argv);
+int main(int argc, char* argv[]) {
 
-int main(int argc, char** argv) {
-
-    auto const size = getDatabaseSize(argc, argv);
-
-    auto const database = db::DatabaseFactory::createInMemoryDatabase(size);
+    auto const configuration = config::Configuration::parse(argc, argv);
+    auto const database = db::DatabaseFactory::createInMemoryDatabase(configuration.getDatabaseSize());
 
     ui::UserInterface ui(std::cout);
 
     ui.presentRecordSet(database.begin(), database.end(), "Initial database");
 
     return 0;
-}
-
-int getDatabaseSize(int argc, char** argv) {
-    if (argc != 2) {
-        throw std::runtime_error("Database size not provided");
-    }
-    
-    return std::atoi(argv[1]);
 }

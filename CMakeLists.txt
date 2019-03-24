@@ -8,9 +8,12 @@ add_executable(app
         src/db/InMemoryDatabase.cpp
         src/db/DatabaseFactory.cpp
         src/engine/expression/FieldEqualExpression.cpp
+        src/engine/lexer/Lexer.cpp
         src/engine/ExpressionParser.cpp
-        src/engine/ParseException.cpp
         src/engine/Location.cpp
+        src/engine/ParseException.cpp
+        src/engine/Token.cpp
+        src/engine/TokenType.cpp
         main.cpp
 )
 

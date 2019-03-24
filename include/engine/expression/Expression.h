@@ -10,6 +10,7 @@
 #include <map>
 
 namespace engine {
+namespace expression {
 
 class Expression {
 
@@ -19,6 +20,7 @@ public:
     virtual bool evaluate(Record const& record) const = 0;
 };
 
+} // namespace expression
 } // namespace engine
 
 

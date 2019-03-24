@@ -5,7 +5,7 @@
 #ifndef OKNO_2019_ADVANCED_CPP_SCANNER_H
 #define OKNO_2019_ADVANCED_CPP_SCANNER_H
 
-#include "Expression.h"
+#include "engine/expression/Expression.h"
 
 #include <algorithm>
 
@@ -13,25 +13,25 @@
 namespace engine {
 
 template <typename Database>
-class Scanner {
+class ExpressionExecutor {
 public:
-    explicit Scanner(Database const& database);
+    explicit ExpressionExecutor(Database const& database);
 
     template <typename OutputIterator>
-    void scan(Expression const& expression, OutputIterator iterator) const;
+    void execute(expression::Expression const &expression, OutputIterator iterator) const;
 
 private:
     Database const& database_;
 };
 
 template <typename Database>
-Scanner<Database>::Scanner(Database const& database)
+ExpressionExecutor<Database>::ExpressionExecutor(Database const& database)
         : database_(database) {
 }
 
 template <typename Database>
 template <typename OutputIterator>
-void Scanner<Database>::scan(Expression const& expression, OutputIterator iterator) const {
+void ExpressionExecutor<Database>::execute(expression::Expression const& expression, OutputIterator iterator) const {
     std::copy_if(database_.begin(), database_.end(), iterator,
             [&expression] (auto const& record) { return expression.evaluate(record); });
 }

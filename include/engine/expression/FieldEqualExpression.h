@@ -5,10 +5,11 @@
 #ifndef OKNO_2019_ADVANCED_CPP_FIELDEQUALEXPRESSION_H
 #define OKNO_2019_ADVANCED_CPP_FIELDEQUALEXPRESSION_H
 
-#include "engine/Expression.h"
+#include "Expression.h"
 
 
 namespace engine {
+namespace expression {
 
 class FieldEqualExpression : public Expression {
 
@@ -22,6 +23,7 @@ private:
     std::string value_;
 };
 
+} // namespace expression
 } // namespace engine
 
 

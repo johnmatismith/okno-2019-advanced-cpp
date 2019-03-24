@@ -11,19 +11,19 @@ namespace config {
 
 Configuration Configuration::parse(int argc, char **argv) {
 
-    // TODO (MR): parse expression
-
-    if (argc != 2) {
-        throw std::runtime_error("Database size not provided");
+    if (argc != 3) {
+        throw std::runtime_error("Wrong parameters");
     }
 
     auto const databaseSize = std::atoi(argv[1]);
+    auto const expression = std::string(argv[2]);
 
-    return Configuration(databaseSize);
+    return Configuration(databaseSize, expression);
 }
 
-Configuration::Configuration(int databaseSize)
-        : databaseSize_(databaseSize) {
+Configuration::Configuration(int databaseSize, std::string const& expression)
+        : databaseSize_(databaseSize),
+          expression_(expression) {
 }
 
 int Configuration::getDatabaseSize() const {
@@ -31,8 +31,7 @@ int Configuration::getDatabaseSize() const {
 }
 
 std::string const& Configuration::getExpression() const {
-    static const std::string EMPTY_STRING;
-    return EMPTY_STRING;
+    return expression_;
 }
 
 } // namespace config

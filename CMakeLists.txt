@@ -9,6 +9,8 @@ add_executable(app
         src/db/DatabaseFactory.cpp
         src/engine/ExpressionParser.cpp
         src/engine/FieldEqualExpression.cpp
+        src/engine/ParseException.cpp
+        src/engine/Location.cpp
         main.cpp
 )
 

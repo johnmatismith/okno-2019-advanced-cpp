@@ -19,9 +19,10 @@ public:
     std::string const& getExpression() const;
 
 private:
-    explicit Configuration(int databaseSize_);
+    Configuration(int databaseSize_, std::string const& expression);
 
     int databaseSize_;
+    std::string expression_;
 };
 
 } // namespace config

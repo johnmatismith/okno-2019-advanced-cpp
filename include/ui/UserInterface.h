@@ -5,9 +5,11 @@
 #ifndef OKNO_2019_ADVANCED_CPP_USERINTERFACE_H
 #define OKNO_2019_ADVANCED_CPP_USERINTERFACE_H
 
-
 #include <string>
 #include <iostream>
+
+#include "engine/ParseException.h"
+
 
 namespace ui {
 
@@ -18,6 +20,8 @@ public:
 
     template <typename RecordIterator>
     void presentRecordSet(RecordIterator begin, RecordIterator end, std::string const& title);
+
+    void presentException(config::Configuration const& configuration, engine::ParseException const& exception);
 
 private:
     void printRecord(std::map<std::string, std::string> const& record);
@@ -60,6 +64,15 @@ void UserInterface::printRecord(std::map<std::string, std::string> const& record
     }
 
     out_ << "]";
+}
+
+void UserInterface::presentException(config::Configuration const& configuration,
+        engine::ParseException const& exception) {
+
+    out_ << "Expression parsing failed:\n\n\t"
+         << configuration.getExpression() << "\n\t"
+         << std::string(static_cast<unsigned long>(exception.getLocation().getOffset()), ' ')
+         << "^--- " << exception.getMessage() << std::endl;
 }
 
 } // namespace ui

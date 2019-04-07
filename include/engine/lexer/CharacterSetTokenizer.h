@@ -59,7 +59,7 @@ std::optional<Token> CharacterSetTokenizer<InputIterator>::parse(InputIterator b
         // do nothing
     }
 
-    return std::make_optional<Token>(tokenType_, Location::fromIterator(begin, current),
+    return std::make_optional<Token>(tokenType_, Location::fromIterator(begin, identifierBegin),
                                      std::string(identifierBegin, current));
 }
 

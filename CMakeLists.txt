@@ -12,6 +12,7 @@ add_executable(app
         src/engine/expression/ConstantExpression.cpp
         src/engine/expression/EqualExpression.cpp
         src/engine/expression/NotEqualExpression.cpp
+        src/engine/expression/OrExpression.cpp
         src/engine/expression/ValueFactory.cpp
         src/engine/expression/VariableExpression.cpp
         src/engine/lexer/Lexer.cpp

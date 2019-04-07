@@ -14,6 +14,7 @@
 #include "engine/expression/EqualExpression.h"
 #include "engine/expression/Expression.h"
 #include "engine/expression/NotEqualExpression.h"
+#include "engine/expression/OrExpression.h"
 #include "engine/expression/Value.h"
 #include "engine/expression/ValueFactory.h"
 #include "engine/expression/VariableExpression.h"
@@ -68,13 +69,31 @@ std::unique_ptr<expression::Expression> Parser::parse(InputIterator begin, Input
 
 template<typename InputIterator>
 std::unique_ptr<expression::Expression> Parser::parseOr(InputIterator& begin, InputIterator end) {
-    return parseAnd(begin, end);
+
+    auto result = parseAnd(begin, end);
+    auto operatorr = begin;
+
+    while (operatorr != end && begin->getType() == TokenType::OR) {
+
+        auto right = parseAnd(++begin, end);
+
+        if (!right) {
+            throw ParseException("Missing right operand for || operation", operatorr->getLocation());
+        }
+
+        result = std::make_unique<expression::OrExpression>(std::move(result), std::move(right));
+
+        operatorr = begin;
+    }
+
+    return std::move(result);
+
 }
 
 template<typename InputIterator>
 std::unique_ptr<expression::Expression> Parser::parseAnd(InputIterator& begin, InputIterator end) {
-    auto result = parseComparision(begin, end);
 
+    auto result = parseComparision(begin, end);
     auto operatorr = begin;
 
     while (operatorr != end && begin->getType() == TokenType::AND) {
@@ -95,8 +114,8 @@ std::unique_ptr<expression::Expression> Parser::parseAnd(InputIterator& begin, I
 
 template<typename InputIterator>
 std::unique_ptr<expression::Expression> Parser::parseComparision(InputIterator& begin, InputIterator end) {
-    auto left = parseGrouping(begin, end);
 
+    auto left = parseGrouping(begin, end);
     auto const operatorr = begin;
 
     if (operatorr == end || (begin->getType() != TokenType::EQUAL && begin->getType() != TokenType::NOT_EQUAL)) {

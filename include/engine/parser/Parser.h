@@ -6,15 +6,16 @@
 #define OKNO_2019_ADVANCED_CPP_PARSER_H
 
 #include <memory>
-#include <engine/expression/ValueFactory.h>
 
 #include "engine/ParseException.h"
 #include "engine/TokenType.h"
-#include "engine/expression/Expression.h"
+#include "engine/expression/AndExpression.h"
 #include "engine/expression/ConstantExpression.h"
 #include "engine/expression/EqualExpression.h"
+#include "engine/expression/Expression.h"
 #include "engine/expression/NotEqualExpression.h"
 #include "engine/expression/Value.h"
+#include "engine/expression/ValueFactory.h"
 #include "engine/expression/VariableExpression.h"
 
 
@@ -72,7 +73,24 @@ std::unique_ptr<expression::Expression> Parser::parseOr(InputIterator& begin, In
 
 template<typename InputIterator>
 std::unique_ptr<expression::Expression> Parser::parseAnd(InputIterator& begin, InputIterator end) {
-    return parseComparision(begin, end);
+    auto result = parseComparision(begin, end);
+
+    auto operatorr = begin;
+
+    while (operatorr != end && begin->getType() == TokenType::AND) {
+
+        auto right = parseComparision(++begin, end);
+
+        if (!right) {
+            throw ParseException("Missing right operand for && operation", operatorr->getLocation());
+        }
+
+        result = std::make_unique<expression::AndExpression>(std::move(result), std::move(right));
+
+        operatorr = begin;
+    }
+
+    return std::move(result);
 }
 
 template<typename InputIterator>

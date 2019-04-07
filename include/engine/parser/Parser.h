@@ -140,7 +140,26 @@ std::unique_ptr<expression::Expression> Parser::parseComparision(InputIterator& 
 
 template<typename InputIterator>
 std::unique_ptr<expression::Expression> Parser::parseGrouping(InputIterator& begin, InputIterator end) {
-    return parsePrimary(begin, end);
+
+    if (begin == end || begin->getType() != TokenType::PARENTHESIS_OPEN) {
+        return parsePrimary(begin, end);
+    }
+
+    auto const open = begin;
+
+    auto result = parseOr(++begin, end);
+
+    if (begin == end) {
+        throw ParseException("No matching ')'", open->getLocation());
+    }
+
+    if (begin->getType() != TokenType::PARENTHESIS_CLOSE) {
+        throw ParseException("')' expected", begin->getLocation());
+    }
+
+    ++begin;
+
+    return std::move(result);
 }
 
 template<typename InputIterator>

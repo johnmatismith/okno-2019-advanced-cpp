@@ -64,7 +64,13 @@ private:
 
 template<typename InputIterator>
 std::unique_ptr<expression::Expression> Parser::parse(InputIterator begin, InputIterator end) {
-    return parseOr(begin, end);
+    auto result = parseOr(begin, end);
+
+    if (begin != end) {
+        throw ParseException("Unexpected token", begin->getLocation());
+    }
+
+    return result;
 }
 
 template<typename InputIterator>
@@ -154,7 +160,7 @@ std::unique_ptr<expression::Expression> Parser::parseGrouping(InputIterator& beg
     }
 
     if (begin->getType() != TokenType::PARENTHESIS_CLOSE) {
-        throw ParseException("')' expected", begin->getLocation());
+        throw ParseException("Unexpected token - ')' was expected", begin->getLocation());
     }
 
     ++begin;

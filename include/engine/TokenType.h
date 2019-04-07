@@ -14,6 +14,7 @@ enum TokenType {
     LESS,
     GREATER,
     EQUAL,
+    NOT_EQUAL,
     LESS_EQUAL,
     GREATER_EQUAL,
     AND,

@@ -21,6 +21,9 @@ std::ostream& operator<<(std::ostream& out, TokenType tokenType) {
         case EQUAL:
             return out << "EQUAL";
 
+        case NOT_EQUAL:
+            return out << "NOT_EQUAL";
+
         case LESS_EQUAL:
             return out << "LESS_EQUAL";
 

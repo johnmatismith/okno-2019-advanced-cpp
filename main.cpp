@@ -3,7 +3,7 @@
 #include "db/InMemoryDatabase.h"
 #include "db/DatabaseFactory.h"
 #include "engine/lexer/Lexer.h"
-#include "engine/ExpressionParser.h"
+#include "engine/parser/Parser.h"
 #include "engine/ExpressionExecutor.h"
 #include "ui/UserInterface.h"
 
@@ -24,7 +24,6 @@ std::vector<engine::Token> performTokenization(config::Configuration const &conf
 int main(int argc, char* argv[]) {
 
     auto const configuration = config::Configuration::parse(argc, argv);
-    auto const expression = engine::ExpressionParser::parse(configuration.getExpression());
     auto const database = db::DatabaseFactory::createInMemoryDatabase(configuration.getDatabaseSize());
     ui::UserInterface ui(std::cout);
 
@@ -37,6 +36,17 @@ int main(int argc, char* argv[]) {
     }
 
     ui.presentTokens(tokens.begin(), tokens.end(), "Parsed tokens");
+
+    engine::parser::Parser parser;
+    std::unique_ptr<engine::expression::Expression> expression;
+    try {
+        expression = parser.parse(tokens.begin(), tokens.end());
+    } catch (engine::ParseException const& e) {
+        ui.presentException(configuration, e);
+        return 1;
+    }
+
+    ui.presentExpression(*expression, "Parsed expression");
 
     engine::ExpressionExecutor executor(database);
 

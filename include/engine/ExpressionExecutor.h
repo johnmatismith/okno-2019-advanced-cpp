@@ -33,7 +33,20 @@ template <typename Database>
 template <typename OutputIterator>
 void ExpressionExecutor<Database>::execute(expression::Expression const& expression, OutputIterator iterator) const {
     std::copy_if(database_.begin(), database_.end(), iterator,
-            [&expression] (auto const& record) { return expression.evaluate(record); });
+            [&expression] (auto const& record) {
+
+                auto const result = expression.evaluate(record);
+
+                if (std::holds_alternative<std::monostate>(result)) {
+                    return false;
+                }
+
+                if (std::holds_alternative<bool>(result)) {
+                    return std::get<bool>(result);
+                }
+
+                return true;
+    });
 }
 
 } // namespace engine

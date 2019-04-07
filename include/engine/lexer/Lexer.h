@@ -66,7 +66,9 @@ void Lexer::tokenize(std::string const& input, OutputIterator output) const {
             throw ParseException("Unrecognized token", Location::fromIterator(begin, it));
         }
 
-        *output = *maybeToken;
+        if (maybeToken->getType() != TokenType::WHITESPACE) {
+            *output = *maybeToken;
+        }
 
         std::advance(it, maybeToken->getValue().size());
     }

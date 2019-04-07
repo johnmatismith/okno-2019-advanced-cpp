@@ -9,6 +9,7 @@
 #include <iostream>
 
 #include "engine/ParseException.h"
+#include "ExpressionPrettyPrinter.h"
 
 
 namespace ui {
@@ -23,6 +24,8 @@ public:
 
     template <typename InputIterator>
     void presentTokens(InputIterator begin, InputIterator end, std::string const& title);
+
+    void presentExpression(engine::expression::Expression const& expression, std::string const& title);
 
     void presentException(config::Configuration const& configuration, engine::ParseException const& exception);
 
@@ -81,6 +84,15 @@ void UserInterface::presentTokens(InputIterator begin, InputIterator end, std::s
     }
 
     out_<< '\n';
+}
+
+void UserInterface::presentExpression(engine::expression::Expression const& expression, std::string const& title) {
+    out_ << title << '\n';
+
+    ExpressionPrettyPrinter printer(out_, 1);
+    expression.visit(printer);
+
+    out_ << '\n';
 }
 
 void UserInterface::presentException(config::Configuration const& configuration,

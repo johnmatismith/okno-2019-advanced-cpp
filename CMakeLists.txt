@@ -7,13 +7,16 @@ add_executable(app
         src/config/Configuration.cpp
         src/db/InMemoryDatabase.cpp
         src/db/DatabaseFactory.cpp
-        src/engine/expression/FieldEqualExpression.cpp
+        src/engine/expression/ConstantExpression.cpp
+        src/engine/expression/EqualExpression.cpp
+        src/engine/expression/ValueFactory.cpp
+        src/engine/expression/VariableExpression.cpp
         src/engine/lexer/Lexer.cpp
-        src/engine/ExpressionParser.cpp
         src/engine/Location.cpp
         src/engine/ParseException.cpp
         src/engine/Token.cpp
         src/engine/TokenType.cpp
+        src/ui/ExpressionPrettyPrinter.cpp
         main.cpp
 )
 

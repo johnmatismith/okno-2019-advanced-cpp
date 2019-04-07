@@ -79,16 +79,16 @@ template<typename InputIterator>
 std::unique_ptr<expression::Expression> Parser::parseComparision(InputIterator& begin, InputIterator end) {
     auto left = parseGrouping(begin, end);
 
-    if (begin == end || (begin->getType() != TokenType::EQUAL && begin->getType() != TokenType::NOT_EQUAL)) {
+    auto const operatorr = begin;
+
+    if (operatorr == end || (begin->getType() != TokenType::EQUAL && begin->getType() != TokenType::NOT_EQUAL)) {
         return std::move(left);
     }
-
-    auto const operatorr = begin;
 
     auto right = parseGrouping(++begin, end);
 
     if (!right) {
-        throw ParseException("Missing operand for comparision operation", operatorr->getLocation());
+        throw ParseException("Missing right operand for comparision operation", operatorr->getLocation());
     }
 
     switch (operatorr->getType()) {
@@ -108,19 +108,22 @@ std::unique_ptr<expression::Expression> Parser::parseGrouping(InputIterator& beg
 
 template<typename InputIterator>
 std::unique_ptr<expression::Expression> Parser::parsePrimary(InputIterator& begin, InputIterator end) {
-    if (begin != end) {
-        switch (begin->getType()) {
-            case TokenType::STRING:
-            case TokenType::NUMBER:
-                return std::make_unique<expression::ConstantExpression>(
-                        expression::ValueFactory::fromConstantToken(*begin++));
 
-            case TokenType::IDENTIFIER:
-                return std::make_unique<expression::VariableExpression>(begin++->getValue());
-        }
+    if (begin == end) {
+        return std::unique_ptr<expression::Expression>();
     }
 
-    return std::unique_ptr<expression::Expression>();
+    switch (begin->getType()) {
+        case TokenType::STRING:
+        case TokenType::NUMBER:
+            return std::make_unique<expression::ConstantExpression>(
+                    expression::ValueFactory::fromConstantToken(*begin++));
+
+        case TokenType::IDENTIFIER:
+            return std::make_unique<expression::VariableExpression>(begin++->getValue());
+    }
+
+    throw ParseException("Expected identifier or value", begin->getLocation());
 }
 
 } // namespace parser

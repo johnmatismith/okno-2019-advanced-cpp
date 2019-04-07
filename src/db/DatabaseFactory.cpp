@@ -40,7 +40,7 @@ InMemoryDatabase::Record db::RecordGenerator::generate() {
     InMemoryDatabase::Record record;
 
     record["key"] = "value " + std::to_string(i_);
-    record["other-key"] = "other value " + std::to_string(i_);
+    record["other_key"] = "other value " + std::to_string(i_);
 
     ++i_;
 

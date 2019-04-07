@@ -15,7 +15,7 @@ namespace lexer {
 namespace {
 
 std::set<char> getIdentifiersBeginCharacterSet() {
-    static char const characters[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    static char const characters[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
     return std::set<char>(&characters[0], &characters[sizeof(characters) - 1]);
 }
 

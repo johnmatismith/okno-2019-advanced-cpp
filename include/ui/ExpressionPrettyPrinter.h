@@ -17,7 +17,7 @@ public:
     explicit ExpressionPrettyPrinter(std::ostream& out, unsigned long indent);
 
     void accept(engine::expression::ConstantExpression const& expression) override;
-    void accept(engine::expression::EqualExpression const& expression) override;
+    void accept(engine::expression::BinaryExpression const& expression) override;
     void accept(engine::expression::VariableExpression const& expression) override;
 
 private:

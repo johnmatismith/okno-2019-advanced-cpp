@@ -15,6 +15,7 @@ namespace expression {
 class VariableExpression : public Expression {
 public:
     explicit VariableExpression(std::string const& identifier);
+    ~VariableExpression() override = default;
 
     Value evaluate(Record const& record) const override;
     void visit(ExpressionVisitor& visitor) const override;

@@ -21,6 +21,8 @@ class Expression {
 public:
     typedef std::map<std::string, std::string> Record;
 
+    virtual ~Expression() = default;
+
     virtual Value evaluate(Record const& record) const = 0;
     virtual void visit(ExpressionVisitor& visitor) const = 0;
 };

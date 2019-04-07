@@ -35,9 +35,9 @@ void ExpressionPrettyPrinter::accept(engine::expression::ConstantExpression cons
     out_ << "]\n";
 }
 
-void ExpressionPrettyPrinter::accept(engine::expression::EqualExpression const& expression) {
+void ExpressionPrettyPrinter::accept(engine::expression::BinaryExpression const& expression) {
 
-    out_ << std::string(indent_++, '\t') << "EqualExpression\n";
+    out_ << std::string(indent_++, '\t') << "BinaryExpression [" << expression.getOperator() << "]\n";
 
     expression.getLeft().visit(*this);
     expression.getRight().visit(*this);

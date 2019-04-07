@@ -10,8 +10,7 @@ namespace engine {
 namespace expression {
 
 EqualExpression::EqualExpression(std::unique_ptr<Expression>&& left, std::unique_ptr<Expression>&& right)
-        : left_(std::move(left)),
-          right_(std::move(right)) {
+        : BinaryExpression("==", std::move(left), std::move(right)) {
 }
 
 Value EqualExpression::evaluate(Expression::Record const& record) const {
@@ -23,14 +22,6 @@ Value EqualExpression::evaluate(Expression::Record const& record) const {
 
 void EqualExpression::visit(ExpressionVisitor& visitor) const {
     visitor.accept(*this);
-}
-
-Expression const& EqualExpression::getLeft() const {
-    return *left_;
-}
-
-Expression const& EqualExpression::getRight() const {
-    return *right_;
 }
 
 } // namespace expression

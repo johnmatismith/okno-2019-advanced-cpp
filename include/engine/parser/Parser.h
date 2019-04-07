@@ -13,6 +13,7 @@
 #include "engine/expression/Expression.h"
 #include "engine/expression/ConstantExpression.h"
 #include "engine/expression/EqualExpression.h"
+#include "engine/expression/NotEqualExpression.h"
 #include "engine/expression/Value.h"
 #include "engine/expression/VariableExpression.h"
 
@@ -78,19 +79,26 @@ template<typename InputIterator>
 std::unique_ptr<expression::Expression> Parser::parseComparision(InputIterator& begin, InputIterator end) {
     auto left = parseGrouping(begin, end);
 
-    if (begin == end || begin->getType() != TokenType::EQUAL) {
+    if (begin == end || (begin->getType() != TokenType::EQUAL && begin->getType() != TokenType::NOT_EQUAL)) {
         return std::move(left);
     }
 
-    auto const equal = begin;
+    auto const operatorr = begin;
 
     auto right = parseGrouping(++begin, end);
 
     if (!right) {
-        throw ParseException("Missing operand for == operation", equal->getLocation());
+        throw ParseException("Missing operand for comparision operation", operatorr->getLocation());
     }
 
-    return std::make_unique<expression::EqualExpression>(std::move(left), std::move(right));
+    switch (operatorr->getType()) {
+        case TokenType::EQUAL:
+            return std::make_unique<expression::EqualExpression>(std::move(left), std::move(right));
+
+        case TokenType::NOT_EQUAL:
+            return std::make_unique<expression::NotEqualExpression>(std::move(left), std::move(right));
+    }
+
 }
 
 template<typename InputIterator>

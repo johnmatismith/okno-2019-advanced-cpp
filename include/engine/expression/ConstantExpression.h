@@ -14,6 +14,7 @@ namespace expression {
 class ConstantExpression : public Expression {
 public:
     explicit ConstantExpression(Value const& value);
+    ~ConstantExpression() override = default;
 
     Value evaluate(Record const& record) const override;
     void visit(ExpressionVisitor& visitor) const override;

@@ -5,6 +5,7 @@
 #include "db/DatabaseFactory.h"
 
 #include "db/InMemoryDatabase.h"
+#include "db/JsonFileDatabase.h"
 
 #include <algorithm>
 
@@ -31,6 +32,10 @@ InMemoryDatabase DatabaseFactory::createInMemoryDatabase(int const size) {
     std::generate_n(std::back_inserter(vector), size, [&generator] { return generator.generate(); });
 
     return InMemoryDatabase(vector);
+}
+
+JsonFileDatabase DatabaseFactory::createJsonFileDatabase(std::experimental::filesystem::path const& path) {
+    return JsonFileDatabase(path);
 }
 
 namespace {

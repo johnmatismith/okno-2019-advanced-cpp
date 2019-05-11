@@ -24,7 +24,11 @@ std::vector<engine::Token> performTokenization(config::Configuration const &conf
 int main(int argc, char* argv[]) {
 
     auto const configuration = config::Configuration::parse(argc, argv);
-    auto const database = db::DatabaseFactory::createInMemoryDatabase(configuration.getDatabaseSize());
+//    auto const database = db::DatabaseFactory::createInMemoryDatabase(configuration.getDatabaseSize());
+
+    std::experimental::filesystem::path path("/home/mr/projects/okno-2019-advanced-cpp/db.json");
+
+    auto const database = db::DatabaseFactory::createJsonFileDatabase(path);
     ui::UserInterface ui(std::cout);
 
     std::vector<engine::Token> tokens;

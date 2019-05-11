@@ -14,6 +14,10 @@ add_executable(app
         src/engine/expression/BinaryExpression.cpp
         src/engine/expression/ConstantExpression.cpp
         src/engine/expression/EqualExpression.cpp
+        src/engine/expression/GreaterEqualExpression.cpp
+        src/engine/expression/GreaterExpression.cpp
+        src/engine/expression/LessEqualExpression.cpp
+        src/engine/expression/LessExpression.cpp
         src/engine/expression/NotEqualExpression.cpp
         src/engine/expression/OrExpression.cpp
         src/engine/expression/ValueFactory.cpp
@@ -25,6 +29,6 @@ add_executable(app
         src/engine/TokenType.cpp
         src/ui/ExpressionPrettyPrinter.cpp
         main.cpp
-)
+        src/engine/expression/ValueConverter.cpp include/engine/expression/ValueConverter.h)
 
 target_include_directories(app PRIVATE include)

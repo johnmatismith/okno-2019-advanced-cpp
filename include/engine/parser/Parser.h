@@ -13,6 +13,10 @@
 #include "engine/expression/ConstantExpression.h"
 #include "engine/expression/EqualExpression.h"
 #include "engine/expression/Expression.h"
+#include "engine/expression/GreaterExpression.h"
+#include "engine/expression/GreaterEqualExpression.h"
+#include "engine/expression/LessExpression.h"
+#include "engine/expression/LessEqualExpression.h"
 #include "engine/expression/NotEqualExpression.h"
 #include "engine/expression/OrExpression.h"
 #include "engine/expression/Value.h"
@@ -23,6 +27,32 @@
 namespace engine {
 namespace parser {
 
+namespace internal {
+
+bool isComparision(TokenType tokenType) {
+
+    switch (tokenType) {
+        case EQUAL:
+        case NOT_EQUAL:
+        case LESS:
+        case LESS_EQUAL:
+        case GREATER:
+        case GREATER_EQUAL:
+            return true;
+
+        case AND:
+        case OR:
+        case STRING:
+        case NUMBER:
+        case PARENTHESIS_OPEN:
+        case PARENTHESIS_CLOSE:
+        case IDENTIFIER:
+        case WHITESPACE:
+            return false;
+    }
+}
+
+} // namespace internal
 
 /**
  * PRIMARY:
@@ -124,7 +154,7 @@ std::unique_ptr<expression::Expression> Parser::parseComparision(InputIterator& 
     auto left = parseGrouping(begin, end);
     auto const operatorr = begin;
 
-    if (operatorr == end || (begin->getType() != TokenType::EQUAL && begin->getType() != TokenType::NOT_EQUAL)) {
+    if (operatorr == end || !internal::isComparision(begin->getType())) {
         return std::move(left);
     }
 
@@ -140,8 +170,19 @@ std::unique_ptr<expression::Expression> Parser::parseComparision(InputIterator& 
 
         case TokenType::NOT_EQUAL:
             return std::make_unique<expression::NotEqualExpression>(std::move(left), std::move(right));
-    }
 
+        case TokenType::LESS:
+            return std::make_unique<expression::LessExpression>(std::move(left), std::move(right));
+
+        case TokenType::LESS_EQUAL:
+            return std::make_unique<expression::LessEqualExpression>(std::move(left), std::move(right));
+
+        case TokenType::GREATER:
+            return std::make_unique<expression::GreaterExpression>(std::move(left), std::move(right));
+
+        case TokenType::GREATER_EQUAL:
+            return std::make_unique<expression::GreaterEqualExpression>(std::move(left), std::move(right));
+    }
 }
 
 template<typename InputIterator>

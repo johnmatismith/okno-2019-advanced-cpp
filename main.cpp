@@ -1,15 +1,25 @@
 
 #include "config/Configuration.h"
-#include "db/InMemoryDatabase.h"
-#include "db/DatabaseFactory.h"
+#include "db/JsonFileDatabase.h"
 #include "engine/lexer/Lexer.h"
 #include "engine/parser/Parser.h"
 #include "engine/ExpressionExecutor.h"
 #include "ui/UserInterface.h"
 
+#include <experimental/filesystem>
 #include <iostream>
 #include <algorithm>
 
+db::JsonFileDatabase createDatabase(config::Configuration const& configuration) {
+
+    std::experimental::filesystem::path path(configuration.getDatabasePath());
+
+    if (!std::experimental::filesystem::is_regular_file(path)) {
+        throw std::runtime_error("Database file does not exist or is not accessible");
+    }
+
+    return db::JsonFileDatabase(path);
+}
 
 std::vector<engine::Token> performTokenization(config::Configuration const &configuration) {
 
@@ -24,11 +34,8 @@ std::vector<engine::Token> performTokenization(config::Configuration const &conf
 int main(int argc, char* argv[]) {
 
     auto const configuration = config::Configuration::parse(argc, argv);
-//    auto const database = db::DatabaseFactory::createInMemoryDatabase(configuration.getDatabaseSize());
 
-    std::experimental::filesystem::path path("/home/mr/projects/okno-2019-advanced-cpp/db.json");
-
-    auto const database = db::DatabaseFactory::createJsonFileDatabase(path);
+    auto database = createDatabase(configuration);
     ui::UserInterface ui(std::cout);
 
     std::vector<engine::Token> tokens;

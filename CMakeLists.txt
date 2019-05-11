@@ -9,8 +9,6 @@ link_libraries(stdc++fs)
 
 add_executable(app
         src/config/Configuration.cpp
-        src/db/DatabaseFactory.cpp
-        src/db/InMemoryDatabase.cpp
         src/db/JsonFileDatabase.cpp
         src/engine/expression/AndExpression.cpp
         src/engine/expression/BinaryExpression.cpp

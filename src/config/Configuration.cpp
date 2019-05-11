@@ -5,6 +5,7 @@
 #include "config/Configuration.h"
 
 #include <stdexcept>
+#include <sstream>
 
 
 namespace config {
@@ -12,22 +13,24 @@ namespace config {
 Configuration Configuration::parse(int argc, char **argv) {
 
     if (argc != 3) {
-        throw std::runtime_error("Wrong parameters");
+        std::ostringstream oss("Usage: ", std::ios::ate);
+        oss << argv[0] << " <db path> <expression>";
+        throw std::runtime_error(oss.str());
     }
 
-    auto const databaseSize = std::atoi(argv[1]);
+    auto const databasePath = std::string(argv[1]);
     auto const expression = std::string(argv[2]);
 
-    return Configuration(databaseSize, expression);
+    return Configuration(databasePath, expression);
 }
 
-Configuration::Configuration(int databaseSize, std::string const& expression)
-        : databaseSize_(databaseSize),
-          expression_(expression) {
+Configuration::Configuration(std::string databasePath, std::string expression)
+        : databasePath_(std::move(databasePath)),
+          expression_(std::move(expression)) {
 }
 
-int Configuration::getDatabaseSize() const {
-    return databaseSize_;
+std::string const& Configuration::getDatabasePath() const {
+    return databasePath_;
 }
 
 std::string const& Configuration::getExpression() const {

@@ -15,13 +15,13 @@ class Configuration {
 public:
     static Configuration parse(int argc, char* argv[]);
 
-    int getDatabaseSize() const;
+    std::string const& getDatabasePath() const;
     std::string const& getExpression() const;
 
 private:
-    Configuration(int databaseSize_, std::string const& expression);
+    Configuration(std::string databasePath_, std::string expression);
 
-    int databaseSize_;
+    std::string databasePath_;
     std::string expression_;
 };
 

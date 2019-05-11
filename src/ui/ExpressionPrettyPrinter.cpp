@@ -24,8 +24,8 @@ void ExpressionPrettyPrinter::accept(engine::expression::ConstantExpression cons
         out_ << "nil";
     } else if (std::holds_alternative<std::string>(value)) {
         out_ << "\"" << std::get<std::string>(value) << "\"";
-    } else if (std::holds_alternative<double>(value)) {
-        out_ << std::get<double>(value);
+    } else if (std::holds_alternative<long>(value)) {
+        out_ << std::get<long>(value);
     } else if (std::holds_alternative<bool>(value)) {
         out_ << std::get<bool>(value);
     } else {

@@ -11,7 +11,7 @@
 namespace engine {
 namespace expression {
 
-typedef std::variant<std::monostate, std::string, double, bool> Value;
+typedef std::variant<std::monostate, std::string, long, bool> Value;
 
 } // namespace expression
 } // namespace engine

@@ -46,7 +46,7 @@ Value ValueFactory::fromNumberToken(Token const& token) {
         throw std::invalid_argument("ValueFactory::fromNumberToken: non NUMBER token");
     }
 
-    return Value(std::stod(token.getValue()));
+    return Value(std::stol(token.getValue()));
 }
 
 } // namespace expression

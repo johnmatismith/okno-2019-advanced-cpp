@@ -12,6 +12,10 @@
 namespace engine {
 namespace expression {
 
+/**
+ * Klasa modelująca wyrażenie w formie identyfikatora zmiennej, której wartość powinna być odczytana
+ * z rekordu bazy danych
+ */
 class VariableExpression : public Expression {
 public:
     explicit VariableExpression(std::string const& identifier);

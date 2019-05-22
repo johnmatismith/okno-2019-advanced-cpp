@@ -13,6 +13,9 @@
 namespace engine {
 namespace lexer {
 
+/**
+ * Implementacja Tokenizer wyszukująca leksemy w postaci słów składających się z podanego zakresu znaków
+ */
 template <typename InputIterator>
 class CharacterSetTokenizer : public Tokenizer<InputIterator> {
 

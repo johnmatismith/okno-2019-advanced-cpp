@@ -12,6 +12,9 @@
 
 namespace ui {
 
+/**
+ * Wzorzec "odwiedzający", wypisujący wyrażenie, również złożone z innych podwyrażeń, z wcięciami
+ */
 class ExpressionPrettyPrinter : public engine::expression::ExpressionVisitor {
 public:
     explicit ExpressionPrettyPrinter(std::ostream& out, unsigned long indent);

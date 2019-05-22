@@ -14,6 +14,10 @@
 
 namespace ui {
 
+/**
+ * Klasa reprezentująca interfejs użytkownika. Wszystkie interakcje z użytkownikiem powinny być wykonywane
+ * za pośrednictwem tej klasy
+ */
 class UserInterface {
 
 public:

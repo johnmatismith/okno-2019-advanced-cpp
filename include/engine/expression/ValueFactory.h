@@ -13,6 +13,9 @@
 namespace engine {
 namespace expression {
 
+/**
+ * Klasa fabrykująca typ Value z podaneo obiektu Token
+ */
 class ValueFactory {
 public:
     ValueFactory() = delete;

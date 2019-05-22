@@ -15,16 +15,13 @@
 namespace engine {
 namespace expression {
 
+/**
+ * Wzorzec "odwiedzający" dla klasy Expression
+ */
 class ExpressionVisitor {
 public:
     virtual void accept(ConstantExpression const& expression) = 0;
     virtual void accept(BinaryExpression const& expression) = 0;
-    virtual void accept(AndExpression const& expression) {
-        accept(static_cast<BinaryExpression const&>(expression));
-    };
-    virtual void accept(EqualExpression const& expression) {
-        accept(static_cast<BinaryExpression const&>(expression));
-    };
     virtual void accept(VariableExpression const& expression) = 0;
 };
 

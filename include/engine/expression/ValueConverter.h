@@ -13,6 +13,9 @@
 namespace engine {
 namespace expression {
 
+/**
+ * Klasa pomocnicza transformująca typ Value do long (jeżeli możliwe)
+ */
 class ValueConverter {
 public:
     ValueConverter() = delete;

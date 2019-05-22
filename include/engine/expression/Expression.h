@@ -16,6 +16,9 @@ namespace expression {
 
 class ExpressionVisitor;
 
+/**
+ * Klasa modelująca dowolnie złożone wyrażenie które da się obliczyć w kontekście zadanego rekordu
+ */
 class Expression {
 
 public:

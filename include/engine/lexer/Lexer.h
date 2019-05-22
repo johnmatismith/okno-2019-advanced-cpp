@@ -18,6 +18,10 @@
 namespace engine {
 namespace lexer {
 
+/**
+ * Lekser zamieniający ciąg znaków na listę leksemów. Wykorzystywana jest uporządkowana lista elementów klasy Tokenizer,
+ * potrafiących wyszukać jeden rodzaj leksemu w miejscu startowym. Patrz Tokenizer.
+ */
 class Lexer {
 
 public:

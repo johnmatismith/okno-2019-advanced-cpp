@@ -11,6 +11,9 @@
 namespace engine {
 namespace expression {
 
+/**
+ * Typ wykorzystywany do przedstawienia wartości wyrażenia
+ */
 typedef std::variant<std::monostate, std::string, long, bool> Value;
 
 } // namespace expression

@@ -13,6 +13,9 @@
 namespace engine {
 namespace expression {
 
+/**
+ * Klasa bazowa ułatwiająca implementację wyrażeń dwuargumentowych
+ */
 class BinaryExpression : public Expression {
 public:
     ~BinaryExpression() override = default;

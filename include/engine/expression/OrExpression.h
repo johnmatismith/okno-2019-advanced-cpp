@@ -11,6 +11,9 @@
 namespace engine {
 namespace expression {
 
+/**
+ * Klasa modelująca wyrażenie OR (alternatywa)
+ */
 class OrExpression : public BinaryExpression {
 public:
     OrExpression(std::unique_ptr<Expression>&& left, std::unique_ptr<Expression>&& right);

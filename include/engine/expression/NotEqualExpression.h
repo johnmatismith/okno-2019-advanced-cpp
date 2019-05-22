@@ -11,6 +11,9 @@
 namespace engine {
 namespace expression {
 
+/**
+ * Klasa modelująca wyrażenie porównania: nie równe
+ */
 class NotEqualExpression : public BinaryExpression {
 public:
     NotEqualExpression(std::unique_ptr<Expression>&& left, std::unique_ptr<Expression>&& right);

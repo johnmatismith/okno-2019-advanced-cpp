@@ -12,6 +12,9 @@
 
 namespace engine {
 
+/**
+ * Klasa filtrująca bazę danych, poprzez wykonanie na każdym jej rekordzie podanego wyrażenia i sprawdzenia jego wyniku
+ */
 template <typename Database>
 class ExpressionExecutor {
 public:

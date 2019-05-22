@@ -11,6 +11,9 @@
 namespace engine {
 namespace expression {
 
+/**
+ * Klasa modelująca wyrażenie porównania: równe
+ */
 class EqualExpression : public BinaryExpression {
 public:
     EqualExpression(std::unique_ptr<Expression>&& left, std::unique_ptr<Expression>&& right);

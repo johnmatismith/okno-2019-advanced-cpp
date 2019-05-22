@@ -11,6 +11,9 @@
 namespace engine {
 namespace expression {
 
+/**
+ * Klasa modelująca wyrażenie AND (koniunkcja)
+ */
 class AndExpression : public BinaryExpression {
 public:
     AndExpression(std::unique_ptr<Expression>&& left, std::unique_ptr<Expression>&& right);

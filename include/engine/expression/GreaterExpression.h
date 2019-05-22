@@ -11,6 +11,9 @@
 namespace engine {
 namespace expression {
 
+/**
+ * Klasa modelująca wyrażenie porównania: większe
+ */
 class GreaterExpression : public BinaryExpression {
 public:
     GreaterExpression(std::unique_ptr<Expression>&& left, std::unique_ptr<Expression>&& right);

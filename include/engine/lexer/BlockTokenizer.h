@@ -15,6 +15,10 @@
 namespace engine {
 namespace lexer {
 
+/**
+ * Implementacja Tokenizer wyszukująca leksemy w postaci bloku nie parsowanych zamkniętego podanymi ogranicznikami,
+ * np. cudzysłowami
+ */
 template <typename InputIterator>
 class BlockTokenizer : public Tokenizer<InputIterator> {
 

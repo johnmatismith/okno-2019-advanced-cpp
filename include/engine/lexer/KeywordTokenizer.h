@@ -8,6 +8,9 @@
 namespace engine {
 namespace lexer {
 
+/**
+ * Implementacja Tokenizer wyszukująca leksemy w postaci podanego słowa kluczowego
+ */
 template <typename InputIterator>
 class KeywordTokenizer : public Tokenizer<InputIterator> {
 

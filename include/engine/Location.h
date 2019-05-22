@@ -9,6 +9,9 @@
 
 namespace engine {
 
+/**
+ * Klasa reprezentująca lokalizację leksemu
+ */
 class Location {
 
 public:

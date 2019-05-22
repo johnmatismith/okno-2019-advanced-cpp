@@ -10,6 +10,9 @@
 
 namespace engine {
 
+/**
+ * Rodzaje obsługiwanych leksemów
+ */
 enum TokenType {
     LESS,
     GREATER,

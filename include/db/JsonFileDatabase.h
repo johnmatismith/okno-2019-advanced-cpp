@@ -12,6 +12,9 @@
 
 namespace db {
 
+/**
+ * Klasa odpowiedzialna za przetransformowanie pliku bazy danych w formacie JSON do iterowalnych rekordów
+ */
 class JsonFileDatabase {
 
 public:

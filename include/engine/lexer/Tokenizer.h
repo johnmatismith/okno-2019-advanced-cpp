@@ -13,6 +13,10 @@
 namespace engine {
 namespace lexer {
 
+/**
+ * Klasa pomocnicza leksera. Klasy pochodne tej klasy abstrakcyjnej powinny implementować wyszukiwanie jednego rodzaju
+ * leksemu w podanym miejscu startowym. Patrz Lexer.
+ */
 template <typename InputIterator>
 class Tokenizer {
 

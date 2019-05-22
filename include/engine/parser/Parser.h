@@ -55,6 +55,12 @@ bool isComparision(TokenType tokenType) {
 } // namespace internal
 
 /**
+ * Parser Recursive descent (przeszukiwanie wgłąb).
+ * Zamienia listę leksemów na wyrażenie (Expression).
+ * Dba o kolejność wykonywania działań.
+ *
+ * Źródło: http://www.craftinginterpreters.com/
+ *
  * PRIMARY:
  *      STRING & NUMBER & IDENTIFIER
  *

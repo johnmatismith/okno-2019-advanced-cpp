@@ -13,6 +13,9 @@
 
 namespace engine {
 
+/**
+ * Wyjątek sygnalizujący błąd parsowania zawierający m.in. wiadomość oraz lokalizację błędu
+ */
 class ParseException : public std::exception {
 
 public:

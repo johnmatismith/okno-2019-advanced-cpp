@@ -10,6 +10,9 @@
 
 namespace config {
 
+/**
+ * Klasa parsująca parametry podane w linii komend i udostępniająca sparsowane parametry
+ */
 class Configuration {
 
 public:

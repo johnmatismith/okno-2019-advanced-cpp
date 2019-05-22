@@ -12,6 +12,9 @@
 
 namespace engine {
 
+/**
+ * Klasa reprezentująca leksem, jego typ, wartość oraz lokalizację
+ */
 class Token {
 
 public:

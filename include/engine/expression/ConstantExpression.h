@@ -11,6 +11,9 @@
 namespace engine {
 namespace expression {
 
+/**
+ * Klasa modelująca wyrażenie stałe, np. "jakiś tekst", 5, true
+ */
 class ConstantExpression : public Expression {
 public:
     explicit ConstantExpression(Value const& value);

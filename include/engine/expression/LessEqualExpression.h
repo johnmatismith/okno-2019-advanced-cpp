@@ -11,6 +11,9 @@
 namespace engine {
 namespace expression {
 
+/**
+ * Klasa modelująca wyrażenie porównania: mniejsze lub równe
+ */
 class LessEqualExpression : public BinaryExpression {
 public:
     LessEqualExpression(std::unique_ptr<Expression>&& left, std::unique_ptr<Expression>&& right);

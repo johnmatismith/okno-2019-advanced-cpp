@@ -20,6 +20,7 @@ add_executable(app
         src/engine/expression/LessExpression.cpp
         src/engine/expression/NotEqualExpression.cpp
         src/engine/expression/OrExpression.cpp
+        src/engine/expression/ValueConverter.cpp
         src/engine/expression/ValueFactory.cpp
         src/engine/expression/VariableExpression.cpp
         src/engine/lexer/Lexer.cpp
@@ -28,7 +29,9 @@ add_executable(app
         src/engine/Token.cpp
         src/engine/TokenType.cpp
         src/ui/ExpressionPrettyPrinter.cpp
-        main.cpp
-        src/engine/expression/ValueConverter.cpp include/engine/expression/ValueConverter.h)
+        src/ui/UserInterface.cpp
+        src/Application.cpp
+        src/main.cpp
+)
 
 target_include_directories(app PRIVATE include)

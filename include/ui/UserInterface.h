@@ -5,12 +5,15 @@
 #ifndef OKNO_2019_ADVANCED_CPP_USERINTERFACE_H
 #define OKNO_2019_ADVANCED_CPP_USERINTERFACE_H
 
-#include <string>
 #include <iostream>
+#include <map>
+#include <string>
 
 #include "engine/ParseException.h"
-#include "ExpressionPrettyPrinter.h"
+#include "engine/Token.h"
 
+namespace config { class Configuration; }
+namespace engine::expression { class Expression; }
 
 namespace ui {
 
@@ -41,10 +44,6 @@ private:
 };
 
 
-UserInterface::UserInterface(std::ostream& out)
-        : out_(out) {
-}
-
 template <typename RecordIterator>
 void UserInterface::presentRecordSet(RecordIterator begin, RecordIterator end, std::string const& title) {
 
@@ -56,24 +55,6 @@ void UserInterface::presentRecordSet(RecordIterator begin, RecordIterator end, s
     }
 
     out_<< '\n';
-}
-
-void UserInterface::printRecord(std::map<std::string, std::string> const& record) {
-    out_ << "\tRecord[ ";
-
-    bool first = true;
-
-    for (auto const &it : record) {
-
-        if (!first) {
-            out_ << ", ";
-        }
-        first = false;
-
-        out_ << it.first << " -> " << it.second;
-    }
-
-    out_ << "]";
 }
 
 template <typename InputIterator>
@@ -88,24 +69,6 @@ void UserInterface::presentTokens(InputIterator begin, InputIterator end, std::s
     }
 
     out_<< '\n';
-}
-
-void UserInterface::presentExpression(engine::expression::Expression const& expression, std::string const& title) {
-    out_ << title << '\n';
-
-    ExpressionPrettyPrinter printer(out_, 1);
-    expression.visit(printer);
-
-    out_ << '\n';
-}
-
-void UserInterface::presentException(config::Configuration const& configuration,
-        engine::ParseException const& exception) {
-
-    out_ << "Expression parsing failed:\n\n\t"
-         << configuration.getExpression() << "\n\t"
-         << std::string(static_cast<unsigned long>(exception.getLocation().getOffset()), ' ')
-         << "^--- " << exception.getMessage() << "\n\n";
 }
 
 } // namespace ui

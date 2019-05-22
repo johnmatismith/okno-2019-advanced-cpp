@@ -18,24 +18,16 @@ namespace engine {
 template <typename Database>
 class ExpressionExecutor {
 public:
-    explicit ExpressionExecutor(Database const& database);
-
     template <typename OutputIterator>
-    void execute(expression::Expression const &expression, OutputIterator iterator) const;
-
-private:
-    Database const& database_;
+    void execute(Database const& database, expression::Expression const &expression, OutputIterator iterator) const;
 };
 
 template <typename Database>
-ExpressionExecutor<Database>::ExpressionExecutor(Database const& database)
-        : database_(database) {
-}
-
-template <typename Database>
 template <typename OutputIterator>
-void ExpressionExecutor<Database>::execute(expression::Expression const& expression, OutputIterator iterator) const {
-    std::copy_if(database_.begin(), database_.end(), iterator,
+void ExpressionExecutor<Database>::execute(Database const& database, expression::Expression const& expression,
+        OutputIterator iterator) const {
+
+    std::copy_if(database.begin(), database.end(), iterator,
             [&expression] (auto const& record) {
 
                 auto const result = expression.evaluate(record);

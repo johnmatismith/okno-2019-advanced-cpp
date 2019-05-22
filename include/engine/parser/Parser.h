@@ -29,7 +29,7 @@ namespace parser {
 
 namespace internal {
 
-bool isComparision(TokenType tokenType) {
+inline bool isComparision(TokenType tokenType) {
 
     switch (tokenType) {
         case EQUAL:

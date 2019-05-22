@@ -10,12 +10,10 @@
 
 namespace config {
 
-Configuration Configuration::parse(int argc, char **argv) {
+std::optional<Configuration> Configuration::parse(int argc, char **argv) {
 
     if (argc != 3) {
-        std::ostringstream oss("Usage: ", std::ios::ate);
-        oss << argv[0] << " <db path> <expression>";
-        throw std::runtime_error(oss.str());
+        return std::optional<Configuration>();
     }
 
     auto const databasePath = std::string(argv[1]);

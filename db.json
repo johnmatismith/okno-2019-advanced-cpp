@@ -1,26 +1,27 @@
 [
   {
     "key": "value 1",
-    "other_key": "other value 1"
+    "other_key": "other value 1",
+    "number": 1
   },
   {
     "key": "value 2",
-    "other_key": "other value 2"
+    "other_key": "other value 2",
+    "number": 2
   },
   {
     "key": "value 3",
-    "other_key": "other value 3"
-  },
-  {
-    "key": "value 3",
-    "other_key": "other value 3"
+    "other_key": "other value 3",
+    "number": 3
   },
   {
     "key": "value 4",
-    "other_key": "other value 4"
+    "other_key": "other value 4",
+    "number": 4
   },
   {
     "key": "value 5",
-    "other_key": "other value 5"
+    "other_key": "other value 5",
+    "number": 5
   }
 ]

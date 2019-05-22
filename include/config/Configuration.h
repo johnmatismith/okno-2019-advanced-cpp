@@ -5,6 +5,7 @@
 #ifndef OKNO_2019_ADVANCED_CPP_CONFIGURATION_H
 #define OKNO_2019_ADVANCED_CPP_CONFIGURATION_H
 
+#include <optional>
 #include <string>
 
 
@@ -16,7 +17,7 @@ namespace config {
 class Configuration {
 
 public:
-    static Configuration parse(int argc, char* argv[]);
+    static std::optional<Configuration> parse(int argc, char* argv[]);
 
     std::string const& getDatabasePath() const;
     std::string const& getExpression() const;

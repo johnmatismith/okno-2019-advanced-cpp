@@ -18,6 +18,7 @@ add_executable(app
         src/engine/expression/GreaterExpression.cpp
         src/engine/expression/LessEqualExpression.cpp
         src/engine/expression/LessExpression.cpp
+        src/engine/expression/NorExpression.cpp
         src/engine/expression/NotEqualExpression.cpp
         src/engine/expression/OrExpression.cpp
         src/engine/expression/ValueConverter.cpp

@@ -18,6 +18,7 @@
 #include "engine/expression/LessExpression.h"
 #include "engine/expression/LessEqualExpression.h"
 #include "engine/expression/NotEqualExpression.h"
+#include "engine/expression/NorExpression.h"
 #include "engine/expression/OrExpression.h"
 #include "engine/expression/Value.h"
 #include "engine/expression/ValueFactory.h"
@@ -42,6 +43,30 @@ inline bool isComparision(TokenType tokenType) {
 
         case AND:
         case OR:
+        case STRING:
+        case NUMBER:
+        case PARENTHESIS_OPEN:
+        case PARENTHESIS_CLOSE:
+        case IDENTIFIER:
+        case WHITESPACE:
+            return false;
+    }
+}
+
+inline bool isOrOrNor(TokenType tokenType) {
+
+    switch (tokenType) {
+        case OR:
+        case NOR:
+            return true;
+
+        case EQUAL:
+        case NOT_EQUAL:
+        case LESS:
+        case LESS_EQUAL:
+        case GREATER:
+        case GREATER_EQUAL:
+        case AND:
         case STRING:
         case NUMBER:
         case PARENTHESIS_OPEN:
@@ -115,15 +140,32 @@ std::unique_ptr<expression::Expression> Parser::parseOr(InputIterator& begin, In
     auto result = parseAnd(begin, end);
     auto operatorr = begin;
 
-    while (operatorr != end && begin->getType() == TokenType::OR) {
+    while (operatorr != end && internal::isOrOrNor(begin->getType())) {
 
         auto right = parseAnd(++begin, end);
 
         if (!right) {
-            throw ParseException("Missing right operand for || operation", operatorr->getLocation());
+            switch (operatorr->getType()) {
+                case TokenType::OR:
+                    throw ParseException("Missing right operand for || operation", operatorr->getLocation());
+
+                case TokenType::NOR:
+                    throw ParseException("Missing right operand for ~| operation", operatorr->getLocation());
+
+                default:
+                    throw ParseException("Unexpected operator", operatorr->getLocation());
+            }
         }
 
-        result = std::make_unique<expression::OrExpression>(std::move(result), std::move(right));
+        switch (operatorr->getType()) {
+            case TokenType::OR:
+                result = std::make_unique<expression::OrExpression>(std::move(result), std::move(right));
+                break;
+
+            case TokenType::NOR:
+                result = std::make_unique<expression::NorExpression>(std::move(result), std::move(right));
+                break;
+        }
 
         operatorr = begin;
     }

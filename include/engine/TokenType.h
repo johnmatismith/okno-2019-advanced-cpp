@@ -22,6 +22,7 @@ enum TokenType {
     GREATER_EQUAL,
     AND,
     OR,
+    NOR,
     STRING,
     NUMBER,
     PARENTHESIS_OPEN,

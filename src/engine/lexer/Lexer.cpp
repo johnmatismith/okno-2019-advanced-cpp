@@ -52,6 +52,7 @@ Lexer::Lexer() {
     tokenizers_.push_back(std::make_unique<KeywordTokenizer<std::string::const_iterator>>(TokenType::NOT_EQUAL, "!="));
     tokenizers_.push_back(std::make_unique<KeywordTokenizer<std::string::const_iterator>>(TokenType::AND, "&&"));
     tokenizers_.push_back(std::make_unique<KeywordTokenizer<std::string::const_iterator>>(TokenType::OR, "||"));
+    tokenizers_.push_back(std::make_unique<KeywordTokenizer<std::string::const_iterator>>(TokenType::NOR, "~|"));
     tokenizers_.push_back(std::make_unique<BlockTokenizer<std::string::const_iterator>>(TokenType::STRING, '"'));
     tokenizers_.push_back(std::make_unique<BlockTokenizer<std::string::const_iterator>>(TokenType::STRING, '\''));
     tokenizers_.push_back(

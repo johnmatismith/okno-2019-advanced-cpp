@@ -1,0 +1,92 @@
+[
+  {
+    "title": "The Shawshank Redemption",
+    "director": "Frank Darabont",
+    "genre": "drama",
+    "year": 1994
+  },
+  {
+    "title": "The Dark Knight Rises",
+    "director": "Christopher Nolan",
+    "genre": "action",
+    "year": 2012
+  },
+  {
+    "title": " The Godfather",
+    "director": "Francis Ford Coppola",
+    "genre": "crime",
+    "year": 1972
+  },
+  {
+    "title": "The Dark Knight",
+    "director": "Christopher Nolan",
+    "genre": "action",
+    "year": 2008
+  },
+  {
+    "title": "Pulp Fiction",
+    "director": "Quentin Tarantino",
+    "genre": "crime",
+    "year": 1994
+  },
+  {
+    "title": "Fight Club",
+    "director": "David Fincher",
+    "genre": "drama",
+    "year": 1999
+  },
+  {
+    "title": "Memento",
+    "director": "Christopher Nolan",
+    "genre": "thriller",
+    "year": 2000
+  },
+  {
+    "title": "Forrest Gump",
+    "director": "Robert Zemeckis",
+    "genre": "drama",
+    "year": 1994
+  },
+  {
+    "title": "Inception",
+    "director": "Christopher Nolan",
+    "genre": "action",
+    "year": 2010
+  },
+  {
+    "title": "Dunkirk",
+    "director": "Christopher Nolan",
+    "genre": "action",
+    "year": 2017
+  },
+  {
+    "title": "The Matrix",
+    "director": "The Wachowski Brothers",
+    "genre": "action",
+    "year": 1999
+  },
+  {
+    "title": "City of God",
+    "director": "Fernando Meirelles",
+    "genre": "crime",
+    "year": 2002
+  },
+  {
+    "title": "Life Is Beautiful",
+    "director": "Roberto Benigni",
+    "genre": "comedy",
+    "year": 1997
+  },
+  {
+    "title": "Steven Spielberg",
+    "director": "Roberto Benigni",
+    "genre": "drama",
+    "year": 1998
+  },
+  {
+    "title": "Interstellar",
+    "director": "Christopher Nolan",
+    "genre": "adventure",
+    "year": 2014
+  }
+]
